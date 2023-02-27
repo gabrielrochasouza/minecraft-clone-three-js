@@ -10,10 +10,6 @@ interface IActions {
   moveLeft: boolean;
   moveRight: boolean;
   jump: boolean;
-  texture1: boolean;
-  texture2: boolean;
-  texture3: boolean;
-  texture4: boolean;
 }
 
 const JUMP_FORCE = 4;
