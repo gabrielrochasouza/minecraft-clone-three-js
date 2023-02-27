@@ -1,5 +1,5 @@
 import { useBox } from "@react-three/cannon";
-import { useState } from "react";
+import { memo, useState } from "react";
 import * as textures from "../img/textures";
 import { useStore } from "../store/useStore";
 
@@ -48,7 +48,6 @@ const Cube = ({ position, texture }: ICube) => {
     addCube(x, y, z);
     return;
   };
-
   return (
     <mesh
       ref={ref}
@@ -79,13 +78,22 @@ const Cube = ({ position, texture }: ICube) => {
       <boxBufferGeometry attach="geometry" />
       <meshStandardMaterial
         map={activeTexture}
-        color={isHovered ? "grey" : "white"}
+        color={isHovered ? "gray" : "white"}
         attach="material"
         transparent={true}
-        opacity={texture === "glass" ? 0.6 : 1}
+        opacity={texture === "glass" ? 0.5 : 1}
       />
     </mesh>
   );
 };
 
-export default Cube;
+function equalProps(prevProps: any, nextProps: any) {
+  const equalPosition =
+    prevProps.position.x === nextProps.position.x &&
+    prevProps.position.y === nextProps.position.y &&
+    prevProps.position.z === nextProps.position.z;
+
+  return equalPosition && prevProps.texture === nextProps.texture;
+}
+
+export default memo(Cube, equalProps);

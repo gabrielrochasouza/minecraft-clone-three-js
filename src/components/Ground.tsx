@@ -1,5 +1,7 @@
 import { usePlane } from "@react-three/cannon";
-import { NearestFilter, RepeatWrapping } from "three";
+import { useMemo } from "react";
+import { NearestFilter, RepeatWrapping, TextureLoader } from "three";
+import { grassImg } from "../img";
 import { grassTexture } from "../img/textures";
 import { useStore } from "../store/useStore";
 
@@ -9,11 +11,13 @@ const Ground = () => {
     position: [0, -0.5, 0],
   }));
 
+  const groundTexture = new TextureLoader().load(grassImg);
+
   const groundSize = 200;
-  grassTexture.magFilter = NearestFilter;
-  grassTexture.wrapS = RepeatWrapping;
-  grassTexture.wrapT = RepeatWrapping;
-  grassTexture.repeat.set(groundSize, groundSize);
+  groundTexture.magFilter = NearestFilter;
+  groundTexture.wrapS = RepeatWrapping;
+  groundTexture.wrapT = RepeatWrapping;
+  groundTexture.repeat.set(groundSize, groundSize);
 
   const [addCube] = useStore((prev: any) => [prev.addCube]);
 
@@ -31,7 +35,7 @@ const Ground = () => {
       ref={ref}
     >
       <planeBufferGeometry attach="geometry" args={[groundSize, groundSize]} />
-      <meshStandardMaterial attach="material" map={grassTexture} />
+      <meshStandardMaterial attach="material" map={groundTexture} />
     </mesh>
   );
 };

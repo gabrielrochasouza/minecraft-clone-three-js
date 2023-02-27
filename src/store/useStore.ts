@@ -13,16 +13,21 @@ export const useStore = create((set) => ({
     texture: 'dirt',
     cubes: getCubesFromLocalStorage(),
     addCube: (x: number,y: number,z: number) => {
-        set((prev: any)=> ({
-            cubes: [
-                ...prev.cubes,
-                {
-                    key: nanoid(),
-                    position: [x, y <= 0 ? 0 : y, z],
-                    texture: prev.texture,
+        set((prev: any)=> {
+            if(!prev.cubes.some((cube: any) => cube.position.x === x && cube.position.y === y && cube.position.z === z)){
+                return {
+                    cubes: [
+                        ...prev.cubes,
+                        {
+                            key: nanoid(),
+                            position: [x, y <= 0 ? 0 : y, z],
+                            texture: prev.texture,
+                        }
+                    ]
                 }
-            ]
-        })) 
+            }
+            return prev.cubes;
+        }) 
     },
     removeCube: (x: number,y: number,z: number) => {
         set((prev: any)=> ({

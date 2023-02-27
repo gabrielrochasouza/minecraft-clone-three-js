@@ -12,12 +12,13 @@ const TextureSelector = () => {
 
   const [texturesVisible, setTexturesVisible] = useState<boolean>(true);
 
-  const textures = {
-    dirt: actions.dirt,
-    glass: actions.glass,
-    grass: actions.grass,
-    log: actions.log,
-    wood: actions.wood,
+  const { dirt, glass, grass, log, wood } = actions;
+  const textures: any = {
+    dirt,
+    glass,
+    grass,
+    log,
+    wood,
   };
 
   useEffect(() => {
@@ -26,13 +27,14 @@ const TextureSelector = () => {
     );
     if (activeTexture) {
       setTexture(activeTexture[0]);
-      setTexturesVisible(true);
     }
     const timeOut = setTimeout(() => {
       setTexturesVisible(false);
     }, 2000);
+    setTexturesVisible(true);
+
     return () => clearTimeout(timeOut);
-  }, [actions]);
+  }, [dirt, glass, grass, log, wood, setTexturesVisible]);
 
   return texturesVisible ? (
     <div className="texture-selector">
