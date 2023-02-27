@@ -6,7 +6,7 @@
 
 - <a href="https://www.youtube.com/watch?v=qpOZup_3P_A&t=2653s"> Code a Minecraft Clone with JavaScript, React, Three.js – Tutorial </a>
 
-- Demo: <a href='https://minecraft-clone-three-c7ecfbizv-gabrielrochasouza.vercel.app/'> Link </a>
+- Demo: <a href='https://minecraft-clone-three-js-vlr6-o0b7flg45-gabrielrochasouza.vercel.app/'> Link </a>
 
 ## Comands of the game
 
