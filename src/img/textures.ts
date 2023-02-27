@@ -1,8 +1,31 @@
 import { dirtImg, glassImg, grassImg, logImg, woodImg } from '.'
-import { LoadingManager, TextureLoader } from 'three'
+import { LinearMipMapLinearFilter, NearestFilter, TextureLoader } from 'three'
 
-export const dirtTexture = new TextureLoader().load(dirtImg);
-export const glassTexture = new TextureLoader().load(glassImg);
-export const grassTexture = new TextureLoader().load(grassImg);
-export const logTexture = new TextureLoader().load(logImg);
-export const woodTexture = new TextureLoader().load(woodImg);
+const dirtTexture = new TextureLoader().load(dirtImg);
+const glassTexture = new TextureLoader().load(glassImg);
+const grassTexture = new TextureLoader().load(grassImg);
+const logTexture = new TextureLoader().load(logImg);
+const woodTexture = new TextureLoader().load(woodImg);
+
+dirtTexture.magFilter = NearestFilter;
+dirtTexture.minFilter = LinearMipMapLinearFilter;
+
+glassTexture.magFilter = NearestFilter;
+glassTexture.minFilter = LinearMipMapLinearFilter;
+
+grassTexture.magFilter = NearestFilter;
+grassTexture.minFilter = LinearMipMapLinearFilter;
+
+logTexture.magFilter = NearestFilter;
+logTexture.minFilter = LinearMipMapLinearFilter;
+
+woodTexture.magFilter = NearestFilter;
+woodTexture.minFilter = LinearMipMapLinearFilter;
+
+export {
+    dirtTexture,
+    glassTexture,
+    grassTexture,
+    logTexture,
+    woodTexture,
+}

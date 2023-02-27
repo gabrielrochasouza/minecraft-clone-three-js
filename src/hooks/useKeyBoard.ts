@@ -1,15 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 
 interface IKeyEventMap {
-    KeyW: string | any,
-    KeyS: string | any,
-    KeyD: string | any,
-    KeyA: string | any,
-    Digit1: string | any,
-    Digit2:string | any,
-    Digit3:string | any,
-    Digit4:string | any,
-    Space: string | any,
+    KeyW: string,
+    KeyS: string,
+    KeyD: string,
+    KeyA: string,
+    Digit1: string,
+    Digit2:string,
+    Digit3:string,
+    Digit4:string,
+    Space: string,
 }
 
 interface IActions {
@@ -18,63 +18,60 @@ interface IActions {
     moveLeft: boolean,
     moveRight: boolean,
     jump: boolean,
-    texture1: boolean,
-    texture2: boolean,
-    texture3: boolean,
-    texture4: boolean,
-}
-
-const defaultActions = {
-    moveForward: false,
-    moveBackwards: false,
-    moveLeft: false,
-    moveRight: false,
-    jump: false,
-    texture1: false,
-    texture2: false,
-    texture3: false,
-    texture4: false,
+    dirt: boolean,
+    glass: boolean,
+    grass: boolean,
+    log: boolean,
+    wood: boolean,
 }
 
 const useKeyBoard = () => {
     const keyEventsActionMap: any = {
-        KeyW: 'moveFoward',
-        KeyS: 'moveBackward',
+        KeyW: 'moveForward',
+        KeyS: 'moveBackwards',
         KeyD: 'moveRight',
         KeyA: 'moveLeft',
-        Digit1: 'texture1',
-        Digit2: 'texture2',
-        Digit3: 'texture3',
-        Digit4: 'texture4',
+        Digit1: 'dirt',
+        Digit2: 'glass',
+        Digit3: 'grass',
+        Digit4: 'log',
+        Digit5: 'wood',
         Space: 'jump',
     }
-
     const [actions, setActions] = useState<IActions>({
         moveForward: false,
         moveBackwards: false,
         moveLeft: false,
         moveRight: false,
         jump: false,
-        texture1: false,
-        texture2: false,
-        texture3: false,
-        texture4: false,
+        dirt: false,
+        glass: false,
+        grass: false,
+        log: false,
+        wood: false,
     });
-    const handleKeyDownEvent = useCallback((e: any)=> {
+    const handleKeyDownEvent = useCallback((e: KeyboardEvent)=> {
         const action = keyEventsActionMap[e.code];
-        console.log(action);554345
+        if (action === 'jump' && e.repeat) return;
         if (action) {
-            setActions((prev: IActions)=> {
-                const newActionsObject: any = {
-                    ...prev
+            setActions((prev) => {
+                return {
+                    ...prev,
+                    [action]: true,
                 }
-                newActionsObject[action] = true;
-                return newActionsObject;
             })
         }
     },[]);
-    const handleKeyUpEvent = useCallback((e: any)=> {
-        setActions(defaultActions);
+    const handleKeyUpEvent = useCallback((e: KeyboardEvent)=> {
+        const action = keyEventsActionMap[e.code];
+        if (action) {
+            setActions((prev) => {
+                return {
+                    ...prev,
+                    [action]: false,
+                }
+            })
+        }
     },[]);
 
     useEffect(()=> {
