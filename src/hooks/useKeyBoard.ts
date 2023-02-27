@@ -1,17 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 
-interface IKeyEventMap {
-    KeyW: string,
-    KeyS: string,
-    KeyD: string,
-    KeyA: string,
-    Digit1: string,
-    Digit2:string,
-    Digit3:string,
-    Digit4:string,
-    Space: string,
-}
-
 interface IActions {
     moveForward: boolean,
     moveBackwards: boolean,

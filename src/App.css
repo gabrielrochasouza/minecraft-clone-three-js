@@ -21,6 +21,7 @@ canvas {
   transform: translate(-50%, -50%);
   color: rgb(215, 215, 215);
   font-size: 4vw;
+  z-index: 18;
 }
 
 .menu {
@@ -67,6 +68,7 @@ button {
   justify-content: center;
   color: white;
   flex-direction: column;
+  z-index: 22;
 }
 .commands ul {
   list-style: none;

@@ -48,7 +48,7 @@ export const useStore = create((set) => ({
         })
     },
     resetWorld: () => {
-        set((prev: any)=>({
+        set(()=>({
             cubes: [],
         }))
     },
