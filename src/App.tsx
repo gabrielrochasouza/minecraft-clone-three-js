@@ -12,9 +12,9 @@ import TextureSelector from "./components/TextureSelector";
 function App() {
   return (
     <>
-      <Canvas>
+      <Canvas style={{ width: "100%", height: "100%" }}>
         <Sky sunPosition={[100, 100, 20]} />
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.8} />
         <FPV />
         <Physics>
           <Player />

@@ -1,8 +1,6 @@
 import { usePlane } from "@react-three/cannon";
-import { useMemo } from "react";
 import { NearestFilter, RepeatWrapping, TextureLoader } from "three";
 import { grassImg } from "../img";
-import { grassTexture } from "../img/textures";
 import { useStore } from "../store/useStore";
 
 const Ground = () => {
@@ -34,7 +32,7 @@ const Ground = () => {
       }}
       ref={ref}
     >
-      <planeBufferGeometry attach="geometry" args={[groundSize, groundSize]} />
+      <planeGeometry attach="geometry" args={[groundSize, groundSize]} />
       <meshStandardMaterial attach="material" map={groundTexture} />
     </mesh>
   );
